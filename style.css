@@ -1,0 +1,22 @@
+
+
+#pictureUrl {
+    margin: 0 auto;
+    width: 28%;
+    display: -moz-box;
+    display: -webkit-box;
+    display: box;
+    -moz-box-pack: center;
+    -moz-box-align: center;
+    -webkit-box-pack: center;
+    -webkit-box-align: center;
+    box-pack: center;
+    box-align: center;
+    -moz-border-radius: 256px;
+    -webkit-border-radius: 256px;
+    border-radius: 256px;
+}
+
+h1 {
+    font-size: 30px;
+}
