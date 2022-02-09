@@ -8,11 +8,26 @@
     <title>Line - LIFF Application 101</title>
 </head>
 <body>
-    <h1>Hello Family</h1>
+    <h1 class="text-center mt-4 mb-4">Hello Family with Line</h1>
+    <div class="container">
+        <ul class="list-group">
+            <li class="list-group-item"><p id="os"><b> OS: </b></p></li>
+            <li class="list-group-item"><p id="language"><b> Language: </b></p></li>
+            <li class="list-group-item"><p id="version"><b> Version: </b></p></li>
+        </ul>
+    </div>
+    
     <script src="https://static.line-scdn.net/liff/edge/2.1/sdk.js"></script>
     <script>
+        function getEnvironment(){
+            document.getElementById("os").append(liff.getOS())
+            document.getElementById("language").append(liff.getLanguage())
+            document.getElementById("version").append(liff.getVersion())
+        }
+
         async function main(){
             await liff.init({liffID: "1656875951-WNAkk4Zy"})
+            getEnvironment()
         }
         main()
     </script>
