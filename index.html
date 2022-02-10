@@ -56,7 +56,10 @@
      <script>
          async function scanCode(){
             const result = await liff.scanCodeV2()
-            document.getElementById("resultScanCode").append(result.value)
+            liff.openWindow({
+                url: result.value,
+                external: true
+            })
          }
 
          async function sendMsg(){
