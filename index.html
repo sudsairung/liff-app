@@ -54,19 +54,26 @@
      <script>
          async function sendMsg(){
              await liff.sendMessages([
-                 {
-                     "type": "text",
-                     "text": "Hello from LIFF Naoki"
-                 },
+                //  {
+                //      "type": "text",
+                //      "text": "Hello from LIFF Naoki"
+                //  },
                  {
                      "type": "text",
                      "text": "Hello 2 from LIFF 10 Feb 65"
                  },
-                 {
-                    "type": "sticker",
-                    "packageId": "446",
-                    "stickerId": "17841"
-                 }
+                //  {
+                //     "type": "sticker",
+                //     "packageId": "446",
+                //     "stickerId": "17841"
+                //  }
+                {
+                    "type": "image",
+                    "originalContentUrl": "https://example.com/original.jpg",
+                    "previewImageUrl": "https://example.com/preview.jpg"
+                }
+
+                 
              ])
              alert("Message Sent!!!")
          }
