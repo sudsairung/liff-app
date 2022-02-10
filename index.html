@@ -55,8 +55,12 @@
          function closed() {
             liff.closeWindow()
          }
-         
 
+         function logout(){
+             liff.logout()
+             window.location.reload()
+         }
+         
          async function getUserProfile(){
              const profile = await liff.getProfile()
              document.getElementById("pictureUrl").src = profile.pictureUrl
