@@ -4,57 +4,103 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
-    <link rel="stylesheet" href="style.css">
-
     <title>Line - LIFF Application 101</title>
-</head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
+    <link rel="stylesheet" href="./style.css">
+    
 
+</head>
 <body>
     
     <div class="container">
-        <h1 class="text-center mt-4 mb-4">Line - LIFF by Tho</h1>
-        <img id="pictureUrl" src="https://mokmoon.com/images/ic_liff.png" class="rounded-circle" alt="">
+        <h1 class="text-center mt-4 mb-4">LINE - LIFF APP Arnan</h1>
+        <img id="pictureUrl" src="https://mokmoon.com/images/ic_liff.png" class="rounded-circle">
+
         <ul class="list-group mt-4">
-            <li class="list-group-item active"><h2 class="text-center">User Profile</h2></li>
+            <li class="list-group-item active"><h5 class="text-center">User Profile</h5></li>
             <li class="list-group-item"><p id="userId"><b>User ID: </b></p></li>
             <li class="list-group-item"><p id="displayName"><b>Display Name: </b></p></li>
             <li class="list-group-item"><p id="statusMessage"><b>Status: </b></p></li>
+            <li class="list-group-item"><p id="email"><b>E-Mail: </b></p></li>
         </ul>
-        <ul class="list-group mt-4">
-            <li class="list-group-item"><p id="os"><b> OS: </b></p></li>
-            <li class="list-group-item"><p id="language"><b> Language: </b></p></li>
-            <li class="list-group-item"><p id="version"><b> Version: </b></p></li>
-            <li class="list-group-item"><p id="isInClient"><b> IsInClient: </b></p></li>
-            <li class="list-group-item"><p id="accessToken"><b> AccessToken: </b></p></li>
-        </ul>
-    </div>
-    
-    <script src="https://static.line-scdn.net/liff/edge/2.1/sdk.js"></script>
-    
-    <script>
-        async function getUserProfile(){
-            const profile = await liff.getProfile()
-            document.getElementById("pictureUrl").src = profile.pictureUrl
-            document.getElementById("userId").append(profile.userId)
-            document.getElementById("displayName").append(profile.displayName)
-            document.getElementById("statusMessage").append(profile.statusMessage)
-        }
+            <!-- คีลัด li.list-group-item>p#email -->
 
-        function getEnvironment(){
-            document.getElementById("os").append(liff.getOS())
-            document.getElementById("language").append(liff.getLanguage())
-            document.getElementById("version").append(liff.getVersion())
-            document.getElementById("isInClient").append(liff.isInClient())
-            document.getElementById("accessToken").append(liff.getAccessToken())
+            <ul class="list-group mt-4">
+                <li class="list-group-item active"><h5><b>Environment</b></h5></li>
+                <li class="list-group-item"><p id="isLoggedIn"><b>Login Status: </b></p></li>
+                <li class="list-group-item"><p id="os"><b>OS: </b></p></li>
+                <li class="list-group-item"><p id="language"><b>Language: </b></p></li>
+                <li class="list-group-item"><p id="LineVersion"><b>Line Version: </b></p></li>
+                <li class="list-group-item"><p id="version"><b>SDK Version: </b></p></li>
+                <li class="list-group-item"><p id="isInClient"><b>isInClient: </b></p></li>
+                <li class="list-group-item"><p id="accessToken"><b>AccessToken: </b></p></li>
+                <li class="list-group-item"><p id="type"><b>Room type: </b></p></li>
+                <li class="list-group-item" id="ex1"><p id="viewType"><b>View type: </b></p></li>
+                <li class="list-group-item" id="ex2"><p id="utouId"><b>utouId: </b></p></li>
+                <li class="list-group-item" id="ex3"><p id="groupId"><b>groupId: </b></p></li>
+                <li class="list-group-item" id="ex4"><p id="roomId"><b>roomId: </b></p></li>
+                <!-- <li class="list-group-item"><p id="accessToken"><b>AccessToken: </b></p></li> -->
+            </ul>
+        </div>
+     <!-- ul>li*3 คำสั่งul li -->
+     <script src="https://static.line-scdn.net/liff/edge/2.1/sdk.js"></script>
+     <script>
+         async function getUserProfile(){
+             const profile = await liff.getProfile()
+             document.getElementById("pictureUrl").src = profile.pictureUrl
+             document.getElementById("userId").append(profile.userId)
+             document.getElementById("displayName").append(profile.displayName)
+             document.getElementById("statusMessage").append(profile.statusMessage)
+             document.getElementById("email").append(liff.getDecodedIDToken().email)
         }
+function getEnvironment(){
+    document.getElementById("os").append(liff.getOS()) //แสดงต่อท้ายข้อความล่าสุด
+    document.getElementById("language").append(liff.getLanguage())
+    document.getElementById("version").append(liff.getVersion())
+    document.getElementById("isInClient").append(liff.isInClient())
+    document.getElementById("accessToken").append(liff.getAccessToken())
+    document.getElementById("LineVersion").append(liff.getLineVersion())
+}
+function getContext(){
+    if(liff.getContext().type === "group"){
+        document.getElementById("ex2").style.display = 'none';
+        document.getElementById("ex4").style.display = 'none';
+    }
+    else if(liff.getContext().type === "utou"){
+        document.getElementById("ex3").style.display = 'none';
+        document.getElementById("ex4").style.display = 'none';
+    }
+    else if(liff.getContext().type === "room"){
+        document.getElementById("ex1").style.display = 'none';
+        document.getElementById("ex4").style.display = 'none';
+    }
+    else{
+        document.getElementById("ex1").style.display = 'none';
+        document.getElementById("ex2").style.display = 'none';
+        document.getElementById("ex3").style.display = 'none';
+        document.getElementById("ex4").style.display = 'none';
+    }
+    document.getElementById("type").append(liff.getContext().type)
+    document.getElementById("viewType").append(liff.getContext().viewType)
+    document.getElementById("utouId").append(liff.getContext().utouId)
+    document.getElementById("groupId").append(liff.getContext().groupId)
+    document.getElementById("roomId").append(liff.getContext().roomId)
+}
 
-        async function main(){
-            await liff.init({liffId: "1656875951-WNAkk4Zy"})
-            getEnvironment()
-            getUserProfile()
+async function main(){//เรียงข้อมูล
+    liff.ready.then(()=> {
+        document.getElementById("isLoggedIn").append(liff.isLoggedIn())
+        if(!liff.isLoggedIn()){
+            liff.login()
         }
-        main()
-    </script>
+    })
+
+    await liff.init({liffId:"1656875951-WNAkk4Zy"})//ขอข้อมูล
+    getEnvironment()
+    getUserProfile()
+    getContext()
+}
+main()
+</script>
 </body>
 </html>
