@@ -76,6 +76,12 @@ function getEnvironment(){
     document.getElementById("isInClient").append(liff.isInClient())
     document.getElementById("accessToken").append(liff.getAccessToken())
     document.getElementById("LineVersion").append(liff.getLineVersion())
+
+    if(liff.isInClient()){
+        document.getElementById("btnLogout").style.display = "none"
+    } else {
+        document.getElementById("btnClose").style.display = "none"
+    }
 }
 function getContext(){
     if(liff.getContext().type === "group"){
