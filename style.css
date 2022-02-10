@@ -1,8 +1,6 @@
-
-
 #pictureUrl {
     margin: 0 auto;
-    width: 28%;
+    width: 30%;
     display: -moz-box;
     display: -webkit-box;
     display: box;
@@ -17,12 +15,24 @@
     border-radius: 256px;
 }
 
-h1 {
-    font-size: 30px;
+h1{
+    font-size: 2rem;
 }
 
-#accessToken {
+#accessToken, #userId, #utouId, #groupId, #roomId{
     display: block;
-    overflow: auto;
     word-wrap: break-word;
+}
+.list-group{
+    font-size: .9rem;
+}
+.list-group-item{
+    padding: 10px;
+}
+.list-group .active{
+    background-color: green;
+    border: 0 none;
+}
+h5{
+    font-size: 1rem;
 }
